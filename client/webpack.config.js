@@ -12,6 +12,9 @@ module.exports = () => {
     entry: {
       main: "./src/js/index.js",
       install: "./src/js/install.js",
+      database: "./src/js/database.js",
+      editor: "./src/js/editor.js",
+      header: "./src/js/header.js",
     },
     output: {
       filename: "[name].bundle.js",
@@ -20,7 +23,7 @@ module.exports = () => {
     plugins: [
       new HtmlWebpackPlugin({
         template: "./index.html",
-        title: "TODOs List",
+        title: "JATE",
       }),
       //injects our custom service work from src-sw.js
       new InjectManifest({
@@ -29,6 +32,8 @@ module.exports = () => {
       }),
       new WebpackPwaManifest({
         // TODO: Create a manifest.json:
+        fingerprints: false,
+        inject: true,
         name: "Just Another Text Editor",
         short_name: "JATE",
         description: "Text Editor with offline capabilities using IndexedDB",
@@ -40,16 +45,17 @@ module.exports = () => {
           {
             src: path.resolve("src/images/logo.png"),
             sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
+            destination: path.join("assets", "icons"),
           },
-          {
-            src: path.resolve("src/images/logo.png"),
-            size: "1024x1024", // you can also use the specifications pattern
-          },
-          {
-            src: path.resolve("src/images/logo.png"),
-            size: "1024x1024",
-            purpose: "maskable",
-          },
+          // {
+          //   src: path.resolve("src/images/logo.png"),
+          //   size: "1024x1024", // you can also use the specifications pattern
+          // },
+          // {
+          //   src: path.resolve("src/images/logo.png"),
+          //   size: "1024x1024",
+          //   purpose: "maskable",
+          // },
         ],
       }),
     ],
