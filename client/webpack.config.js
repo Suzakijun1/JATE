@@ -28,7 +28,7 @@ module.exports = () => {
       //injects our custom service work from src-sw.js
       new InjectManifest({
         swSrc: "./src-sw.js",
-        swDest: "src.sw.js",
+        swDest: "src-sw.js",
       }),
       new WebpackPwaManifest({
         // TODO: Create a manifest.json:
@@ -47,15 +47,6 @@ module.exports = () => {
             sizes: [96, 128, 192, 256, 384, 512], // multiple sizes
             destination: path.join("assets", "icons"),
           },
-          // {
-          //   src: path.resolve("src/images/logo.png"),
-          //   size: "1024x1024", // you can also use the specifications pattern
-          // },
-          // {
-          //   src: path.resolve("src/images/logo.png"),
-          //   size: "1024x1024",
-          //   purpose: "maskable",
-          // },
         ],
       }),
     ],
